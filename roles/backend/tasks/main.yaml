@@ -5,7 +5,7 @@
     ansible.builtin.command: dnf module enable nodejs:20 -y
 
   - name: install nodejs
-    ansible.builtin.dnf: 
+    ansible.builtin.dnf: # Only works for Redhat family
       name: "{{ item }}"
       state: installed
     loop:
@@ -17,11 +17,15 @@
       name: expense
 
   - name: run app pre-requisites
+    tags:
+    - deployment:
     ansible.builtin.import_role:
       name: common
       tasks_from: app-pre-req
 
   - name: install npm dependencies
+    tags:
+    - deployment:
     ansible.builtin.command: npm install
     args:
       chdir: /app
@@ -52,9 +56,11 @@
       daemon_reload: true
 
   - name: start and enable backend service
+    tags:
+    - deployment:
     ansible.builtin.service:
       name: backend
-      state: started
+      state: restarted
       enabled: yes
 
 
