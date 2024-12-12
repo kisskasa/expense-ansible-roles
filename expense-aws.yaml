@@ -33,6 +33,6 @@
       overwrite: true
       ttl: 1
 
-    loop: "{{ result.instances }}"
+    loop: "{{ results.instances }}"
 
 
