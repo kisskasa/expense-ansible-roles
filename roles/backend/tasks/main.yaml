@@ -18,14 +18,14 @@
 
   - name: run app pre-requisites
     tags:
-    - deployment:
+    - deployment
     ansible.builtin.import_role:
       name: common
       tasks_from: app-pre-req
 
   - name: install npm dependencies
     tags:
-    - deployment:
+    - deployment
     ansible.builtin.command: npm install
     args:
       chdir: /app
@@ -57,7 +57,7 @@
 
   - name: start and enable backend service
     tags:
-    - deployment:
+    - deployment
     ansible.builtin.service:
       name: backend
       state: restarted
