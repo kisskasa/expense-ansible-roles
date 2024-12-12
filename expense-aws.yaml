@@ -33,6 +33,6 @@
       overwrite: true
       ttl: 1
 
-    loop: "{{ results.instances }}"
+    loop: "{{ ec2_instance_info.results.instances }}"
 
 
