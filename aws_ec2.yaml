@@ -11,5 +11,5 @@ filters:
 
 compose:
 # This sets the ansible_host variable to connect with the private IP address
-# without changing
+# without changing the hostname
   ansible_host: private_ip_address
