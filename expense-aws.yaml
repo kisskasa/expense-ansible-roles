@@ -1,0 +1,19 @@
+- name: create ec2 and r53 records
+  hosts: localhost
+  vars:
+    zone: chandrakasa.online
+  tasks:
+  - name: Create ec2 instances
+    amazon.aws.ec2_instance:
+      instance_type: t2.micro
+      name: "{{ item }}"
+      security_group: allow-everything
+      image_id: ami-09c813fb71547fc4f
+      tags:
+        Name: "{{ item }}"
+    loop:
+    - DB
+    - backend
+    - frontend
+    register: ec2_instance_info
+
